@@ -7,7 +7,6 @@ import {
   Event,
   EventEmitter,
   Watch,
-  Element,
   Listen
 } from "@stencil/core";
 import {
@@ -30,7 +29,7 @@ import {
   shadow: true
 })
 export class ZInput {
-  @Element() hostElement: HTMLElement;
+  // @Element() hostElement: HTMLElement;
 
   /** the id of the input element */
   @Prop() htmlid: string = randomId();
@@ -66,15 +65,21 @@ export class ZInput {
   @Prop() typingtimeout?: number = 300;
   /** items: available for select */
   @Prop() items?: SelectItemBean[] | string;
+  /** autocomplete value */
+  @Prop() autocomplete: string;
 
   @State() isTyping: boolean = false;
   @State() textareaWrapperHover: string = "";
   @State() textareaWrapperFocus: string = "";
   @State() isOpen: boolean = false;
 
+
   private timer;
   private itemsList: SelectItemBean[] = [];
   private selectedItem: SelectItemBean;
+
+  private textInput?: HTMLInputElement;
+  private selectUlist?: HTMLUListElement;
 
   constructor() {
     this.toggleSelectUl = this.toggleSelectUl.bind(this);
@@ -141,12 +146,7 @@ export class ZInput {
     if (!this.isTyping) {
       this.emitStartTyping();
     }
-    let validity = {};
-    if (this.type === InputTypeEnum.textarea) {
-      validity = this.getValidity("textarea");
-    } else {
-      validity = this.getValidity("input");
-    }
+    let validity = this.getValidity();
     this.value = value;
     this.inputChange.emit({ value, keycode, validity });
 
@@ -182,7 +182,7 @@ export class ZInput {
       type: this.type,
       name: this.name,
       value: this.value,
-      validity: this.getValidity("input")
+      validity: this.getValidity()
     });
   }
 
@@ -200,11 +200,8 @@ export class ZInput {
     }
   }
 
-  getValidity(type: string) {
-    const input = this.hostElement.shadowRoot.querySelector(
-      type
-    ) as HTMLInputElement;
-    return input.validity;
+  getValidity() {
+    return this.textInput.validity
   }
 
   /* START text/password/email/number */
@@ -215,6 +212,7 @@ export class ZInput {
       name: this.name,
       placeholder: this.placeholder,
       value: this.value,
+      autocomplete: this.autocomplete,
       disabled: this.disabled,
       readonly: this.readonly,
       required: this.required,
@@ -236,6 +234,7 @@ export class ZInput {
           <input
             {...this.getTextAttributes()}
             type={type}
+            ref={el => this.textInput = el as HTMLInputElement}
             aria-labelledby={`${this.htmlid}_label`}
           />
           {this.renderResetIcon()}
@@ -413,6 +412,7 @@ export class ZInput {
           role="listbox"
           tabindex={this.disabled || this.readonly ? -1 : 0}
           id={this.htmlid}
+          ref={el => this.selectUlist = el as HTMLUListElement}
           aria-activedescendant={this.value}
           class={`
             ${this.isOpen ? "open" : "closed"}
@@ -501,10 +501,12 @@ export class ZInput {
       index = key <= 0 ? this.itemsList.length - 1 : key - 1;
     }
 
-    const focusElem = this.hostElement.shadowRoot.getElementById(
-      `${this.htmlid}_${index}`
-    );
-    if (focusElem) focusElem.focus();
+    // const focusElem = this.hostElement.shadowRoot.getElementById(
+    //   `${this.htmlid}_${index}`
+    // );
+    // TODO
+    if (this.selectUlist.id == `${this.htmlid}_${index}`)
+      this.selectUlist.focus();
   }
 
   toggleSelectUl(selfFocusOnClose: boolean = false) {
@@ -515,7 +517,9 @@ export class ZInput {
       document.removeEventListener("click", this.handleSelectFocus);
       document.removeEventListener("keyup", this.handleSelectFocus);
       if (selfFocusOnClose) {
-        this.hostElement.shadowRoot.getElementById(this.htmlid).focus();
+        // TODO
+        this.selectUlist.focus()
+        // this.hostElement.shadowRoot.getElementById(this.htmlid).focus();
       }
     }
 

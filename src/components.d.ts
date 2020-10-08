@@ -9,6 +9,24 @@ import { ButtonVariantBean, ComboItemBean, HeaderUserData, InputStatusBean, Inpu
 import { LicenseTypeEnum, MenuItem as MenuItem1, TooltipPosition } from "./beans/index";
 import { ListItemBean } from "./beans/index.js";
 export namespace Components {
+    interface BaseZInput {
+        "autocomplete": string;
+        "type": string;
+    }
+    interface ClosedZInput {
+        "autocomplete": string;
+        /**
+          * input types
+         */
+        "type": InputTypeBean;
+    }
+    interface OpenZInput {
+        "autocomplete": string;
+        /**
+          * input types
+         */
+        "type": InputTypeBean;
+    }
     interface ZButton {
         /**
           * disable button
@@ -348,6 +366,10 @@ export namespace Components {
         "isclosable": boolean;
     }
     interface ZInput {
+        /**
+          * autocomplete value
+         */
+        "autocomplete": string;
         /**
           * checked: available for checkbox, radio
          */
@@ -705,6 +727,24 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLBaseZInputElement extends Components.BaseZInput, HTMLStencilElement {
+    }
+    var HTMLBaseZInputElement: {
+        prototype: HTMLBaseZInputElement;
+        new (): HTMLBaseZInputElement;
+    };
+    interface HTMLClosedZInputElement extends Components.ClosedZInput, HTMLStencilElement {
+    }
+    var HTMLClosedZInputElement: {
+        prototype: HTMLClosedZInputElement;
+        new (): HTMLClosedZInputElement;
+    };
+    interface HTMLOpenZInputElement extends Components.OpenZInput, HTMLStencilElement {
+    }
+    var HTMLOpenZInputElement: {
+        prototype: HTMLOpenZInputElement;
+        new (): HTMLOpenZInputElement;
+    };
     interface HTMLZButtonElement extends Components.ZButton, HTMLStencilElement {
     }
     var HTMLZButtonElement: {
@@ -910,6 +950,9 @@ declare global {
         new (): HTMLZTooltipElement;
     };
     interface HTMLElementTagNameMap {
+        "base-z-input": HTMLBaseZInputElement;
+        "closed-z-input": HTMLClosedZInputElement;
+        "open-z-input": HTMLOpenZInputElement;
         "z-button": HTMLZButtonElement;
         "z-button-filter": HTMLZButtonFilterElement;
         "z-button-sort": HTMLZButtonSortElement;
@@ -947,6 +990,32 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface BaseZInput {
+        "autocomplete"?: string;
+        "type"?: string;
+    }
+    interface ClosedZInput {
+        "autocomplete"?: string;
+        "onInputChange"?: (event: CustomEvent<any>) => void;
+        "onInputCheck"?: (event: CustomEvent<any>) => void;
+        "onStartTyping"?: (event: CustomEvent<any>) => void;
+        "onStopTyping"?: (event: CustomEvent<any>) => void;
+        /**
+          * input types
+         */
+        "type"?: InputTypeBean;
+    }
+    interface OpenZInput {
+        "autocomplete"?: string;
+        "onInputChange"?: (event: CustomEvent<any>) => void;
+        "onInputCheck"?: (event: CustomEvent<any>) => void;
+        "onStartTyping"?: (event: CustomEvent<any>) => void;
+        "onStopTyping"?: (event: CustomEvent<any>) => void;
+        /**
+          * input types
+         */
+        "type"?: InputTypeBean;
+    }
     interface ZButton {
         /**
           * disable button
@@ -1306,6 +1375,10 @@ declare namespace LocalJSX {
         "onInfoBoxClose"?: (event: CustomEvent<any>) => void;
     }
     interface ZInput {
+        /**
+          * autocomplete value
+         */
+        "autocomplete"?: string;
         /**
           * checked: available for checkbox, radio
          */
@@ -1706,6 +1779,9 @@ declare namespace LocalJSX {
         "type"?: TooltipPosition;
     }
     interface IntrinsicElements {
+        "base-z-input": BaseZInput;
+        "closed-z-input": ClosedZInput;
+        "open-z-input": OpenZInput;
         "z-button": ZButton;
         "z-button-filter": ZButtonFilter;
         "z-button-sort": ZButtonSort;
@@ -1746,6 +1822,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "base-z-input": LocalJSX.BaseZInput & JSXBase.HTMLAttributes<HTMLBaseZInputElement>;
+            "closed-z-input": LocalJSX.ClosedZInput & JSXBase.HTMLAttributes<HTMLClosedZInputElement>;
+            "open-z-input": LocalJSX.OpenZInput & JSXBase.HTMLAttributes<HTMLOpenZInputElement>;
             "z-button": LocalJSX.ZButton & JSXBase.HTMLAttributes<HTMLZButtonElement>;
             "z-button-filter": LocalJSX.ZButtonFilter & JSXBase.HTMLAttributes<HTMLZButtonFilterElement>;
             "z-button-sort": LocalJSX.ZButtonSort & JSXBase.HTMLAttributes<HTMLZButtonSortElement>;
