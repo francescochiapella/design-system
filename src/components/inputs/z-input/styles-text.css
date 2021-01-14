@@ -10,6 +10,12 @@
   box-sizing: border-box;
 }
 
+:host > div.textWrapper > div > input:disabled,
+:host > div.textWrapper > div > input[readonly] {
+  padding: 0 var(--half-x3);
+  box-sizing: border-box;
+}
+
 :host > div.textWrapper > div > input.hasIcon,
 :host > div.textWrapper > div > input.hasClearIcon {
   padding-right: var(--basex4);

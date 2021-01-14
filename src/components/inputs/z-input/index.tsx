@@ -287,7 +287,7 @@ export class ZInput {
     return (
       <z-icon
         class="inputIcon"
-        name={this.passwordHidden ? "view" : "view-off"}
+        name={this.passwordHidden ? "view-filled" : "view-off-filled"}
         onClick={() => (this.passwordHidden = !this.passwordHidden)}
       />
     );

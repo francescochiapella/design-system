@@ -39,6 +39,7 @@ footer > h2 {
 }
 
 footer.isopen > h2 {
+  font-size: 14px;
   font-weight: var(--font-sb);
   transition: all 200ms linear;
   background-color: var(--bg-neutral-200);
@@ -49,12 +50,20 @@ footer.isopen.trial > h2 {
   background-color: var(--accent);
 }
 
+footer .visible {
+  display: block;
+}
+
+footer .hidden {
+  display: none;
+}
+
 footer > div.content {
-  height: 40px;
+  height: 60px;
   overflow: hidden;
 }
 
-footer > div.content > div {
+footer > div.content > div:not(.slot-handler) {
   padding: var(--basex1) var(--basex2);
 }
 
@@ -81,8 +90,14 @@ footer > div.content > div > p.year_isbn > span.isbn {
   overflow: hidden;
 }
 
-footer.isopen > div.content > div {
-  height: 70px;
+footer.isopen > div.content > div:not(.slot-handler) {
+  height: 68px;
+}
+
+footer.isopen > div.content > div > p.authors {
+  height: 40px;
+  white-space: initial;
+  text-overflow: initial;
 }
 
 footer.isopen > div.content > div > p.year_isbn {
@@ -103,7 +118,7 @@ footer.isopen {
 }
 
 footer.isopen > div.content {
-  height: 215px;
+  height: 230px;
   transition: height 500ms ease-in-out, top 500ms ease-in-out;
 }
 

@@ -5,10 +5,16 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { AlertTypes, LicenseTypeEnum, MenuItem as MenuItem1, TooltipPosition } from "./beans/index";
 import { ButtonVariantBean, ComboItemBean, DictionaryData, HeaderUserData, InputStatusBean, InputTypeBean, MenuItem, SelectItemBean } from "./beans";
-import { LicenseTypeEnum, MenuItem as MenuItem1, TooltipPosition } from "./beans/index";
 import { ListItemBean } from "./beans/index.js";
 export namespace Components {
+    interface ZAlert {
+        /**
+          * alert variant type
+         */
+        "type": AlertTypes;
+    }
     interface ZButton {
         /**
           * disable button
@@ -181,10 +187,6 @@ export namespace Components {
          */
         "autori": string;
         /**
-          * authors label text
-         */
-        "autorilabel": string;
-        /**
           * card graphic variant (optional)
          */
         "cardtype"?: LicenseTypeEnum;
@@ -196,6 +198,10 @@ export namespace Components {
           * volume isbn
          */
         "isbn": string;
+        /**
+          * footer opened by default (optional)
+         */
+        "opened"?: boolean;
         /**
           * volume title
          */
@@ -614,6 +620,10 @@ export namespace Components {
     }
     interface ZModal {
         /**
+          * has header (optional)
+         */
+        "hasheader"?: boolean;
+        /**
           * unique id
          */
         "modalid": string;
@@ -625,6 +635,11 @@ export namespace Components {
           * title text (optional)
          */
         "modaltitle"?: string;
+    }
+    interface ZOtp {
+        "inputNum"?: number;
+        "message"?: string;
+        "status"?: InputStatusBean;
     }
     interface ZPaginationBar {
         /**
@@ -712,6 +727,24 @@ export namespace Components {
          */
         "url": string;
     }
+    interface ZPocket {
+        /**
+          * close z-pocket
+         */
+        "close": () => Promise<void>;
+        /**
+          * pocket is modal (dark background) (optional)
+         */
+        "ismodal"?: boolean;
+        /**
+          * pocket is open (optional)
+         */
+        "isopen"?: boolean;
+        /**
+          * pocket id
+         */
+        "pocketid": string;
+    }
     interface ZSelect {
         /**
           * the input has autocomplete option
@@ -782,6 +815,16 @@ export namespace Components {
          */
         "status"?: InputStatusBean;
     }
+    interface ZSlideshow {
+        /**
+          * array or JSON stringified images urls
+         */
+        "data": string[] | string;
+        /**
+          * slideshow id
+         */
+        "slideshowid": string;
+    }
     interface ZStepper {
     }
     interface ZStepperItem {
@@ -815,6 +858,10 @@ export namespace Components {
           * label text
          */
         "label": string;
+        /**
+          * open by default (optional)
+         */
+        "opened"?: boolean;
     }
     interface ZTooltip {
         /**
@@ -828,6 +875,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLZAlertElement extends Components.ZAlert, HTMLStencilElement {
+    }
+    var HTMLZAlertElement: {
+        prototype: HTMLZAlertElement;
+        new (): HTMLZAlertElement;
+    };
     interface HTMLZButtonElement extends Components.ZButton, HTMLStencilElement {
     }
     var HTMLZButtonElement: {
@@ -1014,6 +1067,12 @@ declare global {
         prototype: HTMLZModalElement;
         new (): HTMLZModalElement;
     };
+    interface HTMLZOtpElement extends Components.ZOtp, HTMLStencilElement {
+    }
+    var HTMLZOtpElement: {
+        prototype: HTMLZOtpElement;
+        new (): HTMLZOtpElement;
+    };
     interface HTMLZPaginationBarElement extends Components.ZPaginationBar, HTMLStencilElement {
     }
     var HTMLZPaginationBarElement: {
@@ -1032,11 +1091,23 @@ declare global {
         prototype: HTMLZPanelElemElement;
         new (): HTMLZPanelElemElement;
     };
+    interface HTMLZPocketElement extends Components.ZPocket, HTMLStencilElement {
+    }
+    var HTMLZPocketElement: {
+        prototype: HTMLZPocketElement;
+        new (): HTMLZPocketElement;
+    };
     interface HTMLZSelectElement extends Components.ZSelect, HTMLStencilElement {
     }
     var HTMLZSelectElement: {
         prototype: HTMLZSelectElement;
         new (): HTMLZSelectElement;
+    };
+    interface HTMLZSlideshowElement extends Components.ZSlideshow, HTMLStencilElement {
+    }
+    var HTMLZSlideshowElement: {
+        prototype: HTMLZSlideshowElement;
+        new (): HTMLZSlideshowElement;
     };
     interface HTMLZStepperElement extends Components.ZStepper, HTMLStencilElement {
     }
@@ -1063,6 +1134,7 @@ declare global {
         new (): HTMLZTooltipElement;
     };
     interface HTMLElementTagNameMap {
+        "z-alert": HTMLZAlertElement;
         "z-button": HTMLZButtonElement;
         "z-button-filter": HTMLZButtonFilterElement;
         "z-button-sort": HTMLZButtonSortElement;
@@ -1094,10 +1166,13 @@ declare global {
         "z-logo": HTMLZLogoElement;
         "z-menu-dropdown": HTMLZMenuDropdownElement;
         "z-modal": HTMLZModalElement;
+        "z-otp": HTMLZOtpElement;
         "z-pagination-bar": HTMLZPaginationBarElement;
         "z-pagination-page": HTMLZPaginationPageElement;
         "z-panel-elem": HTMLZPanelElemElement;
+        "z-pocket": HTMLZPocketElement;
         "z-select": HTMLZSelectElement;
+        "z-slideshow": HTMLZSlideshowElement;
         "z-stepper": HTMLZStepperElement;
         "z-stepper-item": HTMLZStepperItemElement;
         "z-toggle-button": HTMLZToggleButtonElement;
@@ -1105,6 +1180,12 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface ZAlert {
+        /**
+          * alert variant type
+         */
+        "type"?: AlertTypes;
+    }
     interface ZButton {
         /**
           * disable button
@@ -1293,10 +1374,6 @@ declare namespace LocalJSX {
          */
         "autori"?: string;
         /**
-          * authors label text
-         */
-        "autorilabel"?: string;
-        /**
           * card graphic variant (optional)
          */
         "cardtype"?: LicenseTypeEnum;
@@ -1308,6 +1385,10 @@ declare namespace LocalJSX {
           * volume isbn
          */
         "isbn"?: string;
+        /**
+          * footer opened by default (optional)
+         */
+        "opened"?: boolean;
         /**
           * volume title
          */
@@ -1758,6 +1839,10 @@ declare namespace LocalJSX {
     }
     interface ZModal {
         /**
+          * has header (optional)
+         */
+        "hasheader"?: boolean;
+        /**
           * unique id
          */
         "modalid"?: string;
@@ -1777,6 +1862,12 @@ declare namespace LocalJSX {
           * emitted on modal header click, returns modalid
          */
         "onModalHeaderActive"?: (event: CustomEvent<any>) => void;
+    }
+    interface ZOtp {
+        "inputNum"?: number;
+        "message"?: string;
+        "onOtpChange"?: (event: CustomEvent<any>) => void;
+        "status"?: InputStatusBean;
     }
     interface ZPaginationBar {
         /**
@@ -1876,6 +1967,24 @@ declare namespace LocalJSX {
          */
         "url"?: string;
     }
+    interface ZPocket {
+        /**
+          * pocket is modal (dark background) (optional)
+         */
+        "ismodal"?: boolean;
+        /**
+          * pocket is open (optional)
+         */
+        "isopen"?: boolean;
+        /**
+          * Emitted on pocket toggle, returns pocket id and open status (boolean)
+         */
+        "onPocketToggle"?: (event: CustomEvent<any>) => void;
+        /**
+          * pocket id
+         */
+        "pocketid"?: string;
+    }
     interface ZSelect {
         /**
           * the input has autocomplete option
@@ -1938,6 +2047,16 @@ declare namespace LocalJSX {
          */
         "status"?: InputStatusBean;
     }
+    interface ZSlideshow {
+        /**
+          * array or JSON stringified images urls
+         */
+        "data"?: string[] | string;
+        /**
+          * slideshow id
+         */
+        "slideshowid"?: string;
+    }
     interface ZStepper {
     }
     interface ZStepperItem {
@@ -1975,6 +2094,10 @@ declare namespace LocalJSX {
           * emitted on toggle button click, returns isOpen
          */
         "onToggleClick"?: (event: CustomEvent<any>) => void;
+        /**
+          * open by default (optional)
+         */
+        "opened"?: boolean;
     }
     interface ZTooltip {
         /**
@@ -1987,6 +2110,7 @@ declare namespace LocalJSX {
         "type"?: TooltipPosition;
     }
     interface IntrinsicElements {
+        "z-alert": ZAlert;
         "z-button": ZButton;
         "z-button-filter": ZButtonFilter;
         "z-button-sort": ZButtonSort;
@@ -2018,10 +2142,13 @@ declare namespace LocalJSX {
         "z-logo": ZLogo;
         "z-menu-dropdown": ZMenuDropdown;
         "z-modal": ZModal;
+        "z-otp": ZOtp;
         "z-pagination-bar": ZPaginationBar;
         "z-pagination-page": ZPaginationPage;
         "z-panel-elem": ZPanelElem;
+        "z-pocket": ZPocket;
         "z-select": ZSelect;
+        "z-slideshow": ZSlideshow;
         "z-stepper": ZStepper;
         "z-stepper-item": ZStepperItem;
         "z-toggle-button": ZToggleButton;
@@ -2032,6 +2159,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "z-alert": LocalJSX.ZAlert & JSXBase.HTMLAttributes<HTMLZAlertElement>;
             "z-button": LocalJSX.ZButton & JSXBase.HTMLAttributes<HTMLZButtonElement>;
             "z-button-filter": LocalJSX.ZButtonFilter & JSXBase.HTMLAttributes<HTMLZButtonFilterElement>;
             "z-button-sort": LocalJSX.ZButtonSort & JSXBase.HTMLAttributes<HTMLZButtonSortElement>;
@@ -2063,10 +2191,13 @@ declare module "@stencil/core" {
             "z-logo": LocalJSX.ZLogo & JSXBase.HTMLAttributes<HTMLZLogoElement>;
             "z-menu-dropdown": LocalJSX.ZMenuDropdown & JSXBase.HTMLAttributes<HTMLZMenuDropdownElement>;
             "z-modal": LocalJSX.ZModal & JSXBase.HTMLAttributes<HTMLZModalElement>;
+            "z-otp": LocalJSX.ZOtp & JSXBase.HTMLAttributes<HTMLZOtpElement>;
             "z-pagination-bar": LocalJSX.ZPaginationBar & JSXBase.HTMLAttributes<HTMLZPaginationBarElement>;
             "z-pagination-page": LocalJSX.ZPaginationPage & JSXBase.HTMLAttributes<HTMLZPaginationPageElement>;
             "z-panel-elem": LocalJSX.ZPanelElem & JSXBase.HTMLAttributes<HTMLZPanelElemElement>;
+            "z-pocket": LocalJSX.ZPocket & JSXBase.HTMLAttributes<HTMLZPocketElement>;
             "z-select": LocalJSX.ZSelect & JSXBase.HTMLAttributes<HTMLZSelectElement>;
+            "z-slideshow": LocalJSX.ZSlideshow & JSXBase.HTMLAttributes<HTMLZSlideshowElement>;
             "z-stepper": LocalJSX.ZStepper & JSXBase.HTMLAttributes<HTMLZStepperElement>;
             "z-stepper-item": LocalJSX.ZStepperItem & JSXBase.HTMLAttributes<HTMLZStepperItemElement>;
             "z-toggle-button": LocalJSX.ZToggleButton & JSXBase.HTMLAttributes<HTMLZToggleButtonElement>;

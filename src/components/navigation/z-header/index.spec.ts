@@ -129,7 +129,7 @@ describe("Suite test ZHeader", () => {
     await page.waitForChanges();
     expect(page.root).toEqualHtml(`
     <z-header
-      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]},{"id":"Dizionari","label":"Dizionari","link":"https://www.zanichelli.it/dizionari/in-primo-piano"}]'
+      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]}]'
       extlinkdata='[{"id":"supporto","label":"Supporto","link":"https://www.zanichelli.it/contatti-e-recapiti","icon":"question-mark.png"}]'
       hideloginbutton="false"
       imagealt="logo zanichelli"
@@ -193,12 +193,6 @@ describe("Suite test ZHeader", () => {
                     </mock:shadow-root>
                   </z-list>
                 </span>
-              </span>
-              <span>
-                <a id="Dizionari" class="menu-item" href="https://www.zanichelli.it/dizionari/in-primo-piano" role="link"  tabindex="2">
-                  <span>Dizionari</span>
-                </a>
-                <svg height="8" width="16" class="hidden"><polygon points="8,0 16,8 0,8" class="arrow"></polygon></svg>
               </span>
             </div>
             <hr />
@@ -279,7 +273,7 @@ describe("Suite test ZHeader", () => {
     });
     expect(page.root).toEqualHtml(`
     <z-header
-      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]},{"id":"Dizionari","label":"Dizionari","link":"https://www.zanichelli.it/dizionari/in-primo-piano"}]'
+      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]}]'
       extlinkdata='[{"id":"supporto","label":"Supporto","link":"https://www.zanichelli.it/contatti-e-recapiti","icon":"question-mark.png"}]'
       hideloginbutton="false"
       imagealt="logo zanichelli"
@@ -308,12 +302,6 @@ describe("Suite test ZHeader", () => {
                   <i></i>
                 </a>
                 <svg height="8" width="16"><polygon points="8,0 16,8 0,8" class="arrow"></polygon></svg>
-              </span>
-              <span>
-                <a id="Dizionari" class="menu-item" href="https://www.zanichelli.it/dizionari/in-primo-piano" role="link" role="link" tabindex="2">
-                  <span>Dizionari</span>
-                </a>
-                <svg height="8" width="16" class="hidden"><polygon points="8,0 16,8 0,8" class="arrow"></polygon></svg>
               </span>
             </div>
             <div id="link-ext" class="link-ext">
@@ -349,7 +337,7 @@ describe("Suite test ZHeader", () => {
     });
     expect(page.root).toEqualHtml(`
     <z-header
-      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]},{"id":"Dizionari","label":"Dizionari","link":"https://www.zanichelli.it/dizionari/in-primo-piano"}]'
+      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]}]'
       extlinkdata='[{"id":"supporto","label":"Supporto","link":"https://www.zanichelli.it/contatti-e-recapiti","icon":"question-mark.png"}]'
       hideloginbutton="false"
       imagealt="logo zanichelli"
@@ -390,7 +378,7 @@ describe("Suite test ZHeader", () => {
     });
     expect(page.root).toEqualHtml(`
     <z-header
-      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]},{"id":"Dizionari","label":"Dizionari","link":"https://www.zanichelli.it/dizionari/in-primo-piano"}]'
+      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]}]'
       extlinkdata='[{"id":"supporto","label":"Supporto","link":"https://www.zanichelli.it/contatti-e-recapiti","icon":"question-mark.png"}]'
       hideloginbutton="false"
       imagealt="logo zanichelli"
@@ -435,15 +423,10 @@ describe("Suite test ZHeader", () => {
       components: [ZHeader],
       html: initHeader(true, true, true, true, true, "", false)
     });
-    page.rootInstance.activeMenuItem = {
-      id: "Dizionari",
-      label: "Dizionari",
-      url: "https://www.zanichelli.it/dizionari/in-primo-piano"
-    };
     await page.waitForChanges();
     expect(page.root).toEqualHtml(`
     <z-header
-      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]},{"id":"Dizionari","label":"Dizionari","link":"https://www.zanichelli.it/dizionari/in-primo-piano"}]'
+      intlinkdata='[{"id":"home","label":"Home","link":"#home","subMenu":[{"id":"libreria","label":"la mia libreria","link":"#libreria"}]}]'
       extlinkdata='[{"id":"supporto","label":"Supporto","link":"https://www.zanichelli.it/contatti-e-recapiti","icon":"question-mark.png"}]'
       hideloginbutton="false"
       imagealt="logo zanichelli"
@@ -472,12 +455,6 @@ describe("Suite test ZHeader", () => {
                   <i></i>
                 </a>
                 <svg height="8" width="16" class="hidden"><polygon points="8,0 16,8 0,8" class="arrow"></polygon></svg>
-              </span>
-              <span>
-                <a id="Dizionari" class="menu-item" href="https://www.zanichelli.it/dizionari/in-primo-piano" role="link"  tabindex="2">
-                  <span>Dizionari</span>
-                </a>
-                <svg height="8" width="16"><polygon points="8,0 16,8 0,8" class="arrow"></polygon></svg>
               </span>
             </div>
             <div id="link-ext" class="link-ext">
@@ -576,11 +553,6 @@ function initHeader(
           link: "#libreria"
         }
       ]
-    },
-    {
-      id: "Dizionari",
-      label: "Dizionari",
-      link: "https://www.zanichelli.it/dizionari/in-primo-piano"
     }
   ]);
   const extlinkdata = JSON.stringify([

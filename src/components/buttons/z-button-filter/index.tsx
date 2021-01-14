@@ -38,7 +38,7 @@ export class ZButtonFilter {
 
   renderFixedPillow(filtername) {
     return (
-      <button class="container">
+      <button class={`container ${this.issmall ? "small" : ""}`}>
         {this.hasicon && (
           <z-icon
             class="close-icon-container"
