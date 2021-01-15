@@ -169,6 +169,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * info button is disabled
+         */
+        "disabledinfobutton": boolean;
+        /**
           * flip button label
          */
         "flipbuttonlabel": string;
@@ -234,6 +238,9 @@ export namespace Components {
         "isdisabled": boolean;
     }
     interface ZCardInfo {
+        /**
+          * active accessibility for close icon
+         */
         "accessibility"?: boolean;
         /**
           * dictionary info
@@ -1352,6 +1359,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * info button is disabled
+         */
+        "disabledinfobutton"?: boolean;
+        /**
           * flip button label
          */
         "flipbuttonlabel"?: string;
@@ -1421,6 +1432,9 @@ declare namespace LocalJSX {
         "isdisabled"?: boolean;
     }
     interface ZCardInfo {
+        /**
+          * active accessibility for close icon
+         */
         "accessibility"?: boolean;
         /**
           * dictionary info
