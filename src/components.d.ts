@@ -235,13 +235,13 @@ export namespace Components {
     }
     interface ZCardInfo {
         /**
-          * active accessibility for close icon
-         */
-        "accessibility"?: boolean;
-        /**
           * dictionary info
          */
         "data": string | DictionaryData;
+        /**
+          * tabindex link attribute (optional)
+         */
+        "htmltabindex"?: number;
     }
     interface ZCardList {
         /**
@@ -1425,13 +1425,13 @@ declare namespace LocalJSX {
     }
     interface ZCardInfo {
         /**
-          * active accessibility for close icon
-         */
-        "accessibility"?: boolean;
-        /**
           * dictionary info
          */
         "data"?: string | DictionaryData;
+        /**
+          * tabindex link attribute (optional)
+         */
+        "htmltabindex"?: number;
         /**
           * flip card to front
          */
