@@ -2,7 +2,7 @@ import { Component, Prop, h, Element } from "@stencil/core";
 import {
   ButtonVariantBean,
   ButtonVariantEnum,
-  ButtonTypeEnum
+  ButtonTypeEnum,
 } from "../../../beans";
 
 /**
@@ -11,7 +11,7 @@ import {
 @Component({
   tag: "z-button",
   styleUrl: "styles.css",
-  shadow: true
+  shadow: true,
 })
 export class ZButton {
   @Element() hostElement: HTMLElement;
@@ -35,16 +35,18 @@ export class ZButton {
     this.hostElement.style.pointerEvents = this.disabled ? "none" : "auto";
 
     return (
-      <button
-        id={this.htmlid}
-        name={this.name}
-        type={this.type}
-        disabled={this.disabled}
-        class={`${this.variant} ${this.issmall && "small"}`}
-      >
-        {this.icon && <z-icon name={this.icon} width={16} height={16} />}
-        <slot />
-      </button>
+      <slot name="wrap">
+        <button
+          id={this.htmlid}
+          name={this.name}
+          type={this.type}
+          disabled={this.disabled}
+          class={`${this.variant} ${this.issmall && "small"}`}
+        >
+          <slot />
+          {this.icon && <z-icon name={this.icon} width={16} height={16} />}
+        </button>
+      </slot>
     );
   }
 }

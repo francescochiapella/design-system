@@ -1,3 +1,5 @@
+::slotted(a),
+::slotted(button),
 button {
   font-family: var(--dashboard-font);
   font-weight: var(--font-sb);
@@ -15,6 +17,11 @@ button {
   width: inherit;
 }
 
+::slotted(a) {
+  text-decoration: none;
+  vertical-align: middle;
+}
+
 button::-moz-focus-inner {
   border: 0;
 }
@@ -23,6 +30,8 @@ button.small {
   height: 36px;
 }
 
+::slotted(a.primary),
+::slotted(button.primary),
 button.primary {
   background-color: var(--myz-blue);
   border-color: var(--myz-blue);
@@ -61,6 +70,8 @@ button.primary:disabled {
   fill: var(--text-grey-700);
 }
 
+::slotted(a.secondary),
+::slotted(button.secondary),
 button.secondary {
   background-color: var(--bg-white);
   border-color: var(--myz-blue);
@@ -99,6 +110,8 @@ button.secondary:disabled {
   fill: var(--text-grey-700);
 }
 
+::slotted(a.tertiary),
+::slotted(button.tertiary),
 button.tertiary {
   background-color: transparent;
   border-color: transparent;
