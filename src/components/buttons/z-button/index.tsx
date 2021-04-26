@@ -31,21 +31,27 @@ export class ZButton {
   /** add an icon to button (optional) */
   @Prop() icon?: string;
 
+  renderDefaultButton() {
+    return (
+      <button
+      id={this.htmlid}
+      name={this.name}
+      type={this.type}
+      disabled={this.disabled}
+      class={`${this.variant} ${this.issmall && "small"}`}
+    >
+      <slot />
+      {this.icon && <z-icon name={this.icon} width={16} height={16} />}
+    </button>
+    )
+  }
+
   render() {
     this.hostElement.style.pointerEvents = this.disabled ? "none" : "auto";
 
     return (
       <slot name="wrap">
-        <button
-          id={this.htmlid}
-          name={this.name}
-          type={this.type}
-          disabled={this.disabled}
-          class={`${this.variant} ${this.issmall && "small"}`}
-        >
-          <slot />
-          {this.icon && <z-icon name={this.icon} width={16} height={16} />}
-        </button>
+        {!this.hostElement.children.length && this.renderDefaultButton()}
       </slot>
     );
   }
