@@ -11,6 +11,9 @@ import { ListItemBean } from "./beans/index.js";
 import { ZTypographyLevels } from "./components/typography/z-typography/index";
 export namespace Components {
     interface ZAppHeader {
+        "drawer": boolean;
+        "hero": string;
+        "overlay": boolean;
         /**
           * Stuck mode for the header.
          */
@@ -1347,6 +1350,9 @@ declare global {
 }
 declare namespace LocalJSX {
     interface ZAppHeader {
+        "drawer"?: boolean;
+        "hero"?: string;
+        "overlay"?: boolean;
         /**
           * Stuck mode for the header.
          */
