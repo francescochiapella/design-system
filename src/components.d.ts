@@ -11,6 +11,10 @@ import { ListItemBean } from "./beans/index.js";
 import { ZTypographyLevels } from "./components/typography/z-typography/index";
 export namespace Components {
     interface ZAppHeader {
+        /**
+          * Stuck mode for the header.
+         */
+        "stuck": boolean;
     }
     interface ZAppSwitcher {
         /**
@@ -1343,6 +1347,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface ZAppHeader {
+        /**
+          * Stuck mode for the header.
+         */
+        "stuck"?: boolean;
     }
     interface ZAppSwitcher {
         /**
